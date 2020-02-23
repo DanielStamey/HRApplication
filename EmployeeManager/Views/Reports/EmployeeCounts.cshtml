@@ -1,0 +1,57 @@
+﻿@model EmployeeManager.Report
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Department Counts</h2>
+<table class="table">
+    <tr>
+        <th>
+            Department
+        </th>
+        <th>
+            Employee Count
+        </th>
+    </tr>
+
+    @foreach (var item in Model.DepartmentEmployeeCount)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Label)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Count)
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+<h2>Manager Count</h2>
+<table class="table">
+    <tr>
+        <th>
+            Manager
+        </th>
+        <th>
+            Employee Count
+        </th>
+    </tr>
+
+    @foreach (var item in Model.ManagerEmployeeCount)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Label)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Count)
+            </td>
+        </tr>
+    }
+
+</table>
