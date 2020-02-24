@@ -11,26 +11,32 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
+                <img src="~/Images/ConserviceLogo.png" alt="Conservice">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
             </div>
-            <div class="navbar-collapse collapse">
+            <div class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Employees", "Index", "Employees")</li>
                     <li>
-                        <a href="#">Reports</a>
-                        <ul class="nav navbar-nav">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Reports<b class="caret"></b></a>
+                        <ul class="nav navbar-nav dropdown-menu">
                             <li>@Html.ActionLink("Attrition Reports", "Attrition", "Reports")</li>
                             <li>@Html.ActionLink("Employee Reports", "EmployeeCounts", "Reports")</li>
                         </ul>
                     </li>
-                    <li>@Html.ActionLink("Positions", "Index", "Positions")</li>
-                    <li>@Html.ActionLink("Departments", "Index", "Departments")</li>
-                    <li>@Html.ActionLink("EmploymentStatus", "Index", "EmploymentStatus")</li>
-                    <li>@Html.ActionLink("Shifts", "Index", "Shifts")</li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Data Management<b class="caret"></b></a>
+                        <ul class="nav navbar-nav dropdown-menu">
+                            <li>@Html.ActionLink("Positions", "Index", "Positions")</li>
+                            <li>@Html.ActionLink("Departments", "Index", "Departments")</li>
+                            <li>@Html.ActionLink("EmploymentStatus", "Index", "EmploymentStatus")</li>
+                            <li>@Html.ActionLink("Shifts", "Index", "Shifts")</li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
