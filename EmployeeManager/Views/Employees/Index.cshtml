@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EmployeeManager.Employee>
+﻿@model EmployeeManager.EmployeesPage
 
 @{
     ViewBag.Title = "Index";
@@ -14,40 +14,82 @@
 @using (Html.BeginForm())
 {
     <p>
-        Find by name: @Html.TextBox("SearchString")
+        Find by name: @Html.TextBox("SearchString", Model.SearchString)
         <input type="submit" value="Search" />
+    </p>
+    <p>
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                Position Filter:
+                @Html.DropDownList("PositionFilter", new SelectList(Model.PositionsList, "Id", "PositionName"), "", htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="col-md-3 col-sm-6">
+                Department Filter:
+                @Html.DropDownList("DepartmentFilter", new SelectList(Model.DepartmentList, "Id", "DepartmentName"), "", htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="col-md-3 col-sm-6">
+                Start Date Filter:
+                @Html.DropDownList("StartDateFilter", new SelectList(Model.StartDateList), "", htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="col-md-3 col-sm-6">
+                End Date Filter:
+                @Html.DropDownList("EndDateFilter", new SelectList(Model.EndDateList), "", htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                Status Filter:
+                @Html.DropDownList("StatusFilter", new SelectList(Model.StatusList, "Id", "Status"), "", htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="col-md-3 col-sm-6">
+                Shift Filter:
+                @Html.DropDownList("ShiftFilter", new SelectList(Model.ShiftList, "Id", "ShiftName"), "", htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="col-md-3 col-sm-6">
+                Manager Filter:
+                @Html.DropDownList("ManagerFilter", new SelectList(Model.ManagerList, "Id", "FullName"), "", htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <label></label>
+                <input type="submit" value="Filter" class="form-control "/>
+            </div>
+        </div>
     </p>
 }
 
 <table class="table">
     <tr>
         <th>
-            @Html.ActionLink("First Name", "Index", new { sortOrder = ViewBag.NameSortParm })
-            @*@Html.DisplayNameFor(model => model.FirstName)*@
+            @Html.ActionLink("First Name", "Index", new { SortColumn = "FirstName", IsSortAscending = ViewBag.Sort == "FirstName" ? !Model.IsSortAscending : true })
         </th>
         <th>
-            @Html.ActionLink("Enrollment Date", "Index", new { sortOrder = ViewBag.DateSortParm })
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.ActionLink("Last Name", "Index", new { SortColumn = "LastName", IsSortAscending = ViewBag.Sort == "LastName" ? !Model.IsSortAscending : true })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Position)
+            @Html.ActionLink("Start Date", "Index", new { SortColumn = "StartDate", IsSortAscending = ViewBag.Sort == "StartDate" ? !Model.IsSortAscending : true })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Department)
+            @Html.ActionLink("End Date", "Index", new { SortColumn = "EndDate", IsSortAscending = ViewBag.Sort == "EndDate" ? !Model.IsSortAscending : true })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EmploymentStatus)
+            @Html.ActionLink("Position", "Index", new { SortColumn = "Position", IsSortAscending = ViewBag.Sort == "Position" ? !Model.IsSortAscending : true })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Shift)
+            @Html.ActionLink("Department", "Index", new { SortColumn = "Department", IsSortAscending = ViewBag.Sort == "Department" ? !Model.IsSortAscending : true })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Manager)
+            @Html.ActionLink("Status", "Index", new { SortColumn = "EmploymentStatus", IsSortAscending = ViewBag.Sort == "EmploymentStatus" ? !Model.IsSortAscending : true })
+        </th>
+        <th>
+            @Html.ActionLink("Shift", "Index", new { SortColumn = "Shift", IsSortAscending = ViewBag.Sort == "Shift" ? !Model.IsSortAscending : true })
+        </th>
+        <th>
+            @Html.ActionLink("Manager", "Index", new { SortColumn = "Manager", IsSortAscending = ViewBag.Sort == "Manager" ? !Model.IsSortAscending : true })
         </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.employeelist)
     {
         <tr>
             <td>
@@ -55,6 +97,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Position.PositionName)

@@ -188,6 +188,7 @@
     <Compile Include="Models\DataContext.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\EmployeesPage.cs" />
     <Compile Include="Models\EmploymentStatus.cs" />
     <Compile Include="Models\Position.cs" />
     <Compile Include="Models\Report.cs" />
