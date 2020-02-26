@@ -171,6 +171,16 @@ namespace EmployeeManager.Controllers
             //    .Join(db.Employees, ep => ep.ep.EmployeeId, e => e.Id, (ep, e) => new { ep, e })
             //    .Select(p => new { p.ep.p.PermissionName, p.e.FirstName })
             //    .ToList();
+
+            //var qry = db.Permissions.GroupJoin(
+            //    db.EmployeePermissions,
+            //    permission => permission.Id,
+            //    EmpPerm => EmpPerm.PermissionId,
+            //    (permission, EmpPerm) => new { permission, EmpPerm })
+            //    .SelectMany(
+            //    permission => permission.EmpPerm.DefaultIfEmpty(),
+            //    (permission, EmpPerm) => new { permission.permission.PermissionName, EmpPerm })
+            //    .ToList();
         }
     }
 }
