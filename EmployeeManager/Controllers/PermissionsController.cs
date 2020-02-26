@@ -5,107 +5,107 @@ using System.Web.Mvc;
 
 namespace EmployeeManager.Controllers
 {
-    public class ShiftsController : Controller
+    public class PermissionsController : Controller
     {
         private DataContext db = new DataContext();
 
-        // GET: Shifts
+        // GET: Permissions
         public ActionResult Index()
         {
-            return View(db.Shifts.ToList());
+            return View(db.Permissions.ToList());
         }
 
-        // GET: Shifts/Details/5
+        // GET: Permissions/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Shift shift = db.Shifts.Find(id);
-            if (shift == null)
+            Permission permission = db.Permissions.Find(id);
+            if (permission == null)
             {
                 return HttpNotFound();
             }
-            return View(shift);
+            return View(permission);
         }
 
-        // GET: Shifts/Create
+        // GET: Permissions/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Shifts/Create
+        // POST: Permissions/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ShiftName")] Shift shift)
+        public ActionResult Create([Bind(Include = "Id,PermissionName")] Permission permission)
         {
             if (ModelState.IsValid)
             {
-                db.Shifts.Add(shift);
+                db.Permissions.Add(permission);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(shift);
+            return View(permission);
         }
 
-        // GET: Shifts/Edit/5
+        // GET: Permissions/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Shift shift = db.Shifts.Find(id);
-            if (shift == null)
+            Permission permission = db.Permissions.Find(id);
+            if (permission == null)
             {
                 return HttpNotFound();
             }
-            return View(shift);
+            return View(permission);
         }
 
-        // POST: Shifts/Edit/5
+        // POST: Permissions/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ShiftName")] Shift shift)
+        public ActionResult Edit([Bind(Include = "Id,PermissionName")] Permission permission)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(shift).State = EntityState.Modified;
+                db.Entry(permission).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(shift);
+            return View(permission);
         }
 
-        // GET: Shifts/Delete/5
+        // GET: Permissions/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Shift shift = db.Shifts.Find(id);
-            if (shift == null)
+            Permission permission = db.Permissions.Find(id);
+            if (permission == null)
             {
                 return HttpNotFound();
             }
-            return View(shift);
+            return View(permission);
         }
 
-        // POST: Shifts/Delete/5
+        // POST: Permissions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Shift shift = db.Shifts.Find(id);
-            db.Shifts.Remove(shift);
+            Permission permission = db.Permissions.Find(id);
+            db.Permissions.Remove(permission);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

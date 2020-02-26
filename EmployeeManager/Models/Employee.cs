@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,7 +8,11 @@ namespace EmployeeManager
 {
     public class Employee
     {
-        
+        public Employee()
+        {
+            TeamMemberPhoto = null;
+        }
+
         public int Id { get; set; }
 
         [DisplayName("First Name")]
@@ -56,13 +61,27 @@ namespace EmployeeManager
 
         public virtual Employee Manager { get; set; }
 
-        public int? TeamMemberPhotoId { get; set; }
-
         [DisplayName("Employee Photo")]
-        public virtual TeamMemberPhoto TeamMemberPhoto { get; set; }
+        public byte[] TeamMemberPhoto { get; set; }
+
+        public virtual string TeamMemberPhotoString
+        {
+            get
+            {
+                string imageString = string.Empty;
+                if (TeamMemberPhoto != null)
+                {
+                    imageString = $"data:image;base64,{System.Convert.ToBase64String(TeamMemberPhoto)}";
+                }
+                
+                return imageString;
+            }
+        }
 
         [DisplayName("Favorite Color")]
         public string FavoriteColor { get; set; }
+
+        public ICollection<EmployeePermission> EmployeePermissions { get; set; }
 
         [NotMapped]
         public string FullName
